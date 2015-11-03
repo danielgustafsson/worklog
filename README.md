@@ -1,2 +1,3 @@
-# worklog
-Tiny script to manage my worklog
+# worklog #
+
+Script to manage my personal Git backed worklog.
