@@ -27,7 +27,7 @@ echo "Creating daily entry for $TODAY in $T_PATH"
 
 mkdir -p $T_PATH
 if [[ ! -f $T_FILE ]] || [[ ! -s $T_FILE ]]; then
-	printf "# $TODAY #\n\n" > $T_FILE
+	printf "# $TODAY #\n* Location:\n* Start time:\n* Weekly target:\n\n## Greenplum\n\n## PostgreSQL Community\n\n" > $T_FILE
 	git add $T_FILE
 	git commit -m "Initial commit for $TODAY"
 fi
