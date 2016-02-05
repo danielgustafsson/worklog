@@ -33,3 +33,5 @@ if [[ ! -f $T_FILE ]] || [[ ! -s $T_FILE ]]; then
 fi
 
 $EDITOR $T_FILE
+git add $T_FILE
+git commit -m "Work done on $TODAY"
