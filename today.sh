@@ -22,6 +22,7 @@
 TODAY=`date "+%Y-%m-%d"`
 T_PATH=`date "+%Y/%m-%B"`
 T_FILE=$T_PATH/`date "+%d-%A"`.md
+Y_FILE=`date -j -v-1d "+%Y/%m-%B/%d-%A"`.md
 
 echo "Creating daily entry for $TODAY in $T_PATH"
 
@@ -30,6 +31,10 @@ if [[ ! -f $T_FILE ]] || [[ ! -s $T_FILE ]]; then
 	printf "# $TODAY #\n* Location:\n* Start time:\n* Weekly target:\n\n## Greenplum\n\n## PostgreSQL Community\n\n" > $T_FILE
 	git add $T_FILE
 	git commit -m "Initial commit for $TODAY"
+fi
+
+if [[ -f $Y_FILE ]]; then
+	ln -s $Y_FILE yesterday
 fi
 
 $EDITOR $T_FILE
