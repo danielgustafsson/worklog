@@ -34,7 +34,7 @@ if [[ ! -f $T_FILE ]] || [[ ! -s $T_FILE ]]; then
 fi
 
 if [[ -f $Y_FILE ]]; then
-	ln -s $Y_FILE yesterday
+	ln -f -s $Y_FILE yesterday
 fi
 
 $EDITOR $T_FILE
