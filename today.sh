@@ -23,6 +23,7 @@ TODAY=`date "+%Y-%m-%d"`
 T_PATH=`date "+%Y/%m-%B"`
 T_FILE=$T_PATH/`date "+%d-%A"`.md
 Y_FILE=`date -j -v-1d "+%Y/%m-%B/%d-%A"`.md
+EDITOR_FLAGS=
 
 echo "Creating daily entry for $TODAY in $T_PATH"
 
@@ -35,8 +36,11 @@ fi
 
 if [[ -f $Y_FILE ]]; then
 	ln -f -s $Y_FILE yesterday
+	if [[ "$EDITOR" == "vim" ]]; then
+		EDITOR_FLAGS=-p
+	fi
 fi
 
-$EDITOR $T_FILE
+$EDITOR $EDITOR_FLAGS $T_FILE yesterday
 git add $T_FILE
 git commit -m "Work done on $TODAY"
