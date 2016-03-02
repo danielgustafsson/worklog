@@ -20,6 +20,7 @@
 # THE SOFTWARE.
 
 TODAY=`date "+%Y-%m-%d"`
+TEMPLATE=worklog.template
 T_PATH=`date "+%Y/%m-%B"`
 T_FILE=$T_PATH/`date "+%d-%A"`.md
 Y_FILE=`date -j -v-1d "+%Y/%m-%B/%d-%A"`.md
@@ -29,7 +30,11 @@ echo "Creating daily entry for $TODAY in $T_PATH"
 
 mkdir -p $T_PATH
 if [[ ! -f $T_FILE ]] || [[ ! -s $T_FILE ]]; then
-	printf "# $TODAY #\n* Location:\n* Start time:\n* Weekly target:\n\n## Greenplum\n\n## PostgreSQL Community\n\n" > $T_FILE
+	if [[ ! -f $TEMPLATE ]]; then
+		printf "# $TODAY #\n\n" > $T_FILE
+	else
+		sed "s/<<TODAY>>/$TODAY/" < worklog.template > $T_FILE
+	fi
 	git add $T_FILE
 	git commit -m "Initial commit for $TODAY"
 fi
