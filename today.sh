@@ -34,6 +34,10 @@ if [[ ! -f $T_FILE ]] || [[ ! -s $T_FILE ]]; then
 		printf "# $TODAY #\n\n" > $T_FILE
 	else
 		sed "s/<<TODAY>>/$TODAY/" < worklog.template > $T_FILE
+		if [[ -f worklog.todo ]]; then
+			mv $T_FILE temp
+			sed -e "s/<<TODO>>/$(cat worklog.todo)/" < temp > $T_FILE
+		fi
 	fi
 	git add $T_FILE
 	git commit -m "Initial commit for $TODAY"
