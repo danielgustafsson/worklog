@@ -45,9 +45,9 @@ fi
 
 if [[ -f $Y_FILE ]]; then
 	ln -f -s $Y_FILE yesterday
-	P_FILE=yesterday
 	if [[ "$EDITOR" == "vim" ]]; then
-		EDITOR_FLAGS+= -p
+		EDITOR_FLAGS+=" -p "
+		P_FILE=yesterday
 	fi
 else
 	rm -f yesterday
